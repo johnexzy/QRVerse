@@ -9,6 +9,7 @@ QRVerse is a web application built with Nuxt.js that allows you to generate visu
 
 ```bash
 git clone https://github.com/your-username/QRVerse.git
+```
 
 2. Navigate to the project directory.
 
