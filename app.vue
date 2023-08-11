@@ -10,7 +10,7 @@
 
         <div id="qrcode"></div>
         <div class="w-full px-10 flex flex-col gap-4">
-          <label class="font-medium ">Enter or paste QR code</label>
+          <label class="font-medium ">Enter or paste url</label>
           <input
             type="text"
             v-model="qrString"
