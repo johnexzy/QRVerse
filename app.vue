@@ -114,8 +114,11 @@ useHead({
       type: "text/javascript",
     },
     {
-      src: "https://unpkg.com/canvg@3.0.1/lib/umd.js",
+      src: "https://cdnjs.cloudflare.com/ajax/libs/canvg/3.0.9/umd.js",
       type: "text/javascript",
+      integrity: "sha512-Wu9XXg78PiNE0DI4Z80lFKlEpLq7yGjquc0I35Nz+sYmSs4/oNHaSW8ACStXBoXciqwTLnSINqToeWP3iNDGmQ==",
+      crossorigin: "anonymous",
+      referrerpolicy: "no-referrer"
     },
 
     {
