@@ -117,19 +117,7 @@ useHead({
       src: "https://unpkg.com/canvg@3.0.1/lib/umd.js",
       type: "text/javascript",
     },
-    {
-      src: "https://cdn.jsdelivr.net/npm/pdfkit@0.11.0/js/pdfkit.min.js",
-      type: "text/javascript",
-    },
-    {
-      src:
-        "https://github.com/devongovett/blob-stream/releases/download/v0.1.3/blob-stream.js",
-      type: "text/javascript",
-    },
-    {
-      src: "https://cdn.jsdelivr.net/npm/svg-to-pdfkit@0.1.8/source.min.js",
-      type: "text/javascript",
-    },
+
     {
       src: "https://sharonchoong.github.io/svg-exportJS/svg-export.min.js",
       type: "text/javascript",
