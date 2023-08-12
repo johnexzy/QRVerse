@@ -2,8 +2,7 @@
   <main>
     <section class="flex justify-center">
       <div
-        class="w-[400px] bg-orange-200 p-5 py-10 rounded-lg m-5 border flex justify-center flex-col items-center gap-10"
-      >
+        class="w-[400px] bg-orange-200 p-5 py-10 rounded-lg m-5 border flex justify-center flex-col items-center gap-10">
         <h1 class="text-3xl text-center font-bold">
           Generate QR Code
         </h1>
@@ -11,40 +10,37 @@
         <div id="qrcode"></div>
         <div class="w-full px-10 flex flex-col gap-4">
           <label class="font-medium ">Enter or paste url</label>
-          <input
-            type="text"
-            v-model="qrString"
-            placeholder="https://afrodev.space"
-            class="rounded-[8px] p-3 border-[#A9A9A9] border w-full"
-            @keyup.enter="generateQRCode"
-          />
-          <button
-            class="w-full text-center py-3 bg-[#131313] rounded-lg text-white"
-            @click="generateQRCode"
-          >
+          <input type="text" v-model="qrString" placeholder="https://afrodev.space"
+            class="rounded-[8px] p-3 border-[#A9A9A9] border w-full" @keyup.enter="generateQRCode" />
+          <button class="w-full text-center py-3 bg-[#131313] rounded-lg text-white" @click="generateQRCode">
             Generate
           </button>
+          <div class="flex flex-col justify-between">
+            <div @click="() => setBg('transparent')" class="border w-full flex flex-col items-center justify-center text-white rounded-md h-[30px] cursor-pointer">
+              Transparent
+            </div>
+            <div @click="() => setBg('white')" class="bg-white border w-full flex flex-col items-center justify-center text-white rounded-md h-[30px] cursor-pointer">
+              
+            </div>
+            <div @click="() => setBg('blue')" class="bg-blue-900 border w-full flex flex-col items-center justify-center text-white rounded-md h-[30px] cursor-pointer">
+              
+            </div>
+          </div>
 
           <div class="text-center ">
             Download As
           </div>
           <div class="flex justify-between">
-            <button
-              class=" p-3 border border-orange-50 font-medium rounded-lg hover:bg-orange-300"
-              @click="() => saveQr('svg')"
-            >
+            <button class=" p-3 border border-orange-50 font-medium rounded-lg hover:bg-orange-300"
+              @click="() => saveQr('svg')">
               SVG
             </button>
-            <button
-              class=" p-3 border border-orange-50 font-medium rounded-lg hover:bg-orange-300"
-              @click="() => saveQr('png')"
-            >
+            <button class=" p-3 border border-orange-50 font-medium rounded-lg hover:bg-orange-300"
+              @click="() => saveQr('png')">
               PNG
             </button>
-            <button
-              class=" p-3 border border-orange-50 font-medium rounded-lg hover:bg-orange-300"
-              @click="() => saveQr('jpg')"
-            >
+            <button class=" p-3 border border-orange-50 font-medium rounded-lg hover:bg-orange-300"
+              @click="() => saveQr('jpg')">
               JPG
             </button>
           </div>
@@ -56,24 +52,22 @@
 <script setup>
 /* global QRCode */
 const qrString = ref("");
-
+const bgColor = ref("transparent")
 let QRInstance;
 
 function generateQRCode() {
-  const container = document.getElementById("qrcode");
+
   QRInstance = new QRCode({
     content: qrString.value || "https://afrodev.space",
     padding: 4,
     width: 256,
     height: 256,
     color: "#000000",
-    background: "transparent",
+    background: bgColor.value,
     ecl: "H",
     join: true,
   });
-  var svg = QRInstance.svg();
-
-  container.innerHTML = svg;
+  writeCode(QRInstance)
 }
 
 function saveQr(format) {
@@ -103,6 +97,20 @@ function saveQr(format) {
   }
 }
 
+function setBg(color) {
+  if (QRInstance) {
+    bgColor.value = color
+    QRInstance.options.background = color
+    writeCode(QRInstance)
+  }
+}
+
+function writeCode(instance){
+  const container = document.getElementById("qrcode");
+  var svg = instance.svg();
+  console.log(instance)
+  container.innerHTML = svg;
+} 
 onMounted(() => {
   generateQRCode();
 });
