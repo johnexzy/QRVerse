@@ -24,6 +24,7 @@
           >
             Generate
           </button>
+          <div>Set Background Color</div>
           <div class="flex flex-col justify-between">
             <div
               @click="() => setBgColor('transparent')"
@@ -72,11 +73,10 @@
 <script setup>
 /* global QRCode */
 const qrString = ref("");
-const bgColor = ref("transparent")
+const bgColor = ref("transparent");
 let QRInstance;
 
 function generateQRCode() {
-
   QRInstance = new QRCode({
     content: qrString.value || "https://afrodev.space",
     padding: 4,
@@ -87,7 +87,7 @@ function generateQRCode() {
     ecl: "H",
     join: true,
   });
-  writeCode(QRInstance)
+  writeCode(QRInstance);
 }
 
 function saveQr(format) {
@@ -117,20 +117,22 @@ function saveQr(format) {
   }
 }
 
-function setBg(color) {
+function setBgColor(color) {
   if (QRInstance) {
-    bgColor.value = color
-    QRInstance.options.background = color
-    writeCode(QRInstance)
+    bgColor.value = color;
+    QRInstance.options.background = color;
+    writeCode(QRInstance);
   }
 }
 
-function writeCode(instance){
+function writeCode(instance) {
   const container = document.getElementById("qrcode");
   var svg = instance.svg();
-  console.log(instance)
+  console.log(instance);
   container.innerHTML = svg;
-} 
+}
+
+
 onMounted(() => {
   generateQRCode();
 });
@@ -144,9 +146,10 @@ useHead({
     {
       src: "https://cdnjs.cloudflare.com/ajax/libs/canvg/3.0.9/umd.js",
       type: "text/javascript",
-      integrity: "sha512-Wu9XXg78PiNE0DI4Z80lFKlEpLq7yGjquc0I35Nz+sYmSs4/oNHaSW8ACStXBoXciqwTLnSINqToeWP3iNDGmQ==",
+      integrity:
+        "sha512-Wu9XXg78PiNE0DI4Z80lFKlEpLq7yGjquc0I35Nz+sYmSs4/oNHaSW8ACStXBoXciqwTLnSINqToeWP3iNDGmQ==",
       crossorigin: "anonymous",
-      referrerpolicy: "no-referrer"
+      referrerpolicy: "no-referrer",
     },
 
     {
