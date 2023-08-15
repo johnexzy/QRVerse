@@ -41,7 +41,23 @@
               class="bg-blue-900 border w-full flex flex-col items-center justify-center text-white rounded-md h-[30px] cursor-pointer"
             ></div>
           </div>
-
+          <div>Set Foreground Color</div>
+          <div class="flex flex-col justify-between">
+            <div
+              @click="() => setFgColor('transparent')"
+              class="border w-full flex flex-col items-center justify-center text-white rounded-md h-[30px] cursor-pointer"
+            >
+              Transparent
+            </div>
+            <div
+              @click="() => setFgColor('white')"
+              class="bg-white border w-full flex flex-col items-center justify-center text-white rounded-md h-[30px] cursor-pointer"
+            ></div>
+            <div
+              @click="() => setFgColor('blue')"
+              class="bg-blue-900 border w-full flex flex-col items-center justify-center text-white rounded-md h-[30px] cursor-pointer"
+            ></div>
+          </div>
           <div class="text-center ">
             Download As
           </div>
@@ -121,6 +137,14 @@ function setBgColor(color) {
   if (QRInstance) {
     bgColor.value = color;
     QRInstance.options.background = color;
+    writeCode(QRInstance);
+  }
+}
+
+function setFgColor(color) {
+  if (QRInstance) {
+    bgColor.value = color;
+    QRInstance.options.color = color;
     writeCode(QRInstance);
   }
 }
